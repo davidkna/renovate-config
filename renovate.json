@@ -8,5 +8,6 @@
         "enabled": true
     },
     "semanticCommits": "enabled",
-    "timezone": "Europe/Berlin"
+    "timezone": "Europe/Berlin",
+    "dependencyDashboard": false
 }
