@@ -9,5 +9,6 @@
     },
     "semanticCommits": "enabled",
     "timezone": "Europe/Berlin",
-    "dependencyDashboard": false
+    "dependencyDashboard": false,
+    "automergeType": "branch"
 }
