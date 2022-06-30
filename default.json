@@ -3,13 +3,23 @@
     "extends": [
         "config:base",
         ":automergeMinor",
-        ":maintainLockFilesWeekly",
-        ":group(clap,clap_complete)"
+        ":maintainLockFilesWeekly"
     ],
     "configMigration": true,
     "semanticCommits": "enabled",
     "semanticCommitType": "build",
     "timezone": "Europe/Berlin",
     "dependencyDashboard": false,
-    "automergeType": "branch"
+    "automergeType": "branch",
+    "packageRules": [
+        {
+            "matchDatasources": [
+                "crate"
+            ],
+            "matchPackagePrefixes": [
+                "clap"
+            ],
+            "groupName": "clap"
+        }
+    ]
 }
