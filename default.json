@@ -1,15 +1,19 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "config:base",
+        ":ignoreModulesAndTests",
+        ":autodetectPinVersions",
+        ":prHourlyLimit2",
+        ":prConcurrentLimit10",
+        "group:monorepos",
+        "group:recommended",
+        "workarounds:all",
         ":automergeMinor",
-        ":maintainLockFilesWeekly"
+        ":maintainLockFilesWeekly",
+        ":semanticCommitType(build)"
     ],
     "configMigration": true,
-    "semanticCommits": "enabled",
-    "semanticCommitType": "build",
     "timezone": "Europe/Berlin",
-    "dependencyDashboard": false,
     "automergeType": "branch",
     "packageRules": [
         {
@@ -20,6 +24,17 @@
                 "clap"
             ],
             "groupName": "clap"
+        }
+    ],
+    "regexManagers": [
+        {
+            "fileMatch": [
+                "(^|\\/)\\.?dprint.json"
+            ],
+            "matchStrings": [
+                "\"https://github.com/(?<depName>.+)/releases/download/(?<currentValue>.+)/plugin.wasm\""
+            ],
+            "datasourceTemplate": "github-releases"
         }
     ]
 }
