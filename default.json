@@ -6,8 +6,6 @@
         "group:recommended",
         "replacements:all",
         "workarounds:all",
-        "docker:pinDigests",
-        "helpers:pinGitHubActionDigests",
         ":pinDevDependencies",
         ":automergeMinor",
         ":maintainLockFilesWeekly",
