@@ -2,12 +2,13 @@
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
         ":ignoreModulesAndTests",
-        ":autodetectPinVersions",
-        ":prHourlyLimit2",
-        ":prConcurrentLimit10",
         "group:monorepos",
         "group:recommended",
+        "replacements:all",
         "workarounds:all",
+        "docker:pinDigests",
+        "helpers:pinGitHubActionDigests",
+        ":pinDevDependencies",
         ":automergeMinor",
         ":maintainLockFilesWeekly",
         ":semanticCommitType(build)"
@@ -26,6 +27,9 @@
             "groupName": "clap"
         }
     ],
+    "nix": {
+        "enabled": true
+    },
     "regexManagers": [
         {
             "fileMatch": [
