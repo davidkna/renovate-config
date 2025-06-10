@@ -6,14 +6,14 @@
         "group:recommended",
         "replacements:all",
         "workarounds:all",
+        ":configMigration",
         ":pinDevDependencies",
         ":automergeMinor",
         ":maintainLockFilesWeekly",
+        ":automergeBranch",
         ":semanticCommitType(build)"
     ],
-    "configMigration": true,
     "timezone": "Europe/Berlin",
-    "automergeType": "branch",
     "packageRules": [
         {
             "matchDatasources": [
@@ -23,20 +23,26 @@
                 "clap"
             ],
             "groupName": "clap"
-        }
+        },
+        {
+            "groupName": "dprint plugins",
+            "matchPackagePrefixes": ["dprint"],
+            "extends": ["schedule:weekly"]
+        },
     ],
     "nix": {
         "enabled": true
     },
-    "regexManagers": [
-        {
-            "fileMatch": [
-                "(^|\\/)\\.?dprint.json"
-            ],
-            "matchStrings": [
-                "\"https://github.com/(?<depName>.+)/releases/download/(?<currentValue>.+)/plugin.wasm\""
-            ],
-            "datasourceTemplate": "github-releases"
-        }
-    ]
+    "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "(^|\\/)\\.?dprint.json"
+      ],
+      "matchStrings": [
+        "\"https://github.com/(?<depName>.+)/releases/download/(?<currentValue>.+?)/plugin.wasm\""
+      ],
+      "datasourceTemplate": "github-releases"
+    }
+  ]
 }
